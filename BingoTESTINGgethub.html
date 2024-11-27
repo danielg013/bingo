@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Number Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            background-image: url(depositphotos_86314844-stock-illustration-gentle-pink-texture-pink-background.jpg);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #topLeftContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+        }
+
+        #generateButton, #resetButton, #uploadButton {
+            padding: 10px;
+            background-color: #007bff;
+            color: pink;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #topRightContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            padding: 10px;
+        }
+
+        #numbersListContainer {
+            flex: 1;
+            margin-right: 20px;
+            
+        }
+
+        #numbersList {
+            padding: 0;
+            list-style: none;
+        }
+
+        .red-bold {
+            color: red;
+            font-weight: bold;
+        }
+
+        .number-item {
+            font-size: 150px;
+            margin-bottom: 10px;
+            position: relative;
+            text-align: center;
+        }
+
+        #imageContainer {
+            width: 50%;
+            height: 500px;
+            position: relative;
+        }
+
+        #imageContainer img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        #imageInput {
+            display: none;
+        }
+
+        #title {
+            text-align: center;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 40px;
+            background-color: #007bff;
+            color: pink;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 1500px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+            color: black;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .highlighted {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title"><marquee direction="right">PURSE BINGO 2023 // PURSE BINGO 2023 // PURSE BINGO 2023 // PURSE BINGO 2023 // PURSE BINGO 2023 // PURSE BINGO 2023 // PURSE BINGO 2023 // PURSE BINGO 2023</marquee></h1>
+
+    <div id="topLeftContainer">
+        <button id="generateButton" onclick="generateRandomNumber()">Generate</button>
+        <button id="resetButton" onclick="resetBoard()">Reset</button>
+        <input type="file" accept="image/*" id="imageInput" onchange="displayImage(event)">
+        <button id="uploadButton" onclick="document.getElementById('imageInput').click()">Upload Image</button>
+    </div>
+
+    <div id="topRightContainer">
+        <div id="numbersListContainer">
+            <ul id="numbersList"></ul>
+        </div>
+        <div id="imageContainer">
+            <img id="uploadedImage" alt="">
+        </div>
+    </div>
+
+    <h2>BINGO Numbers</h2>
+    <table>
+        <tr>
+            <th>B</th>
+            <td onclick="displayNumber('B', 1)">1</td>
+            <td onclick="displayNumber('B', 2)">2</td>
+            <td onclick="displayNumber('B', 3)">3</td>
+            <td onclick="displayNumber('B', 4)">4</td>
+            <td onclick="displayNumber('B', 5)">5</td>
+            <td onclick="displayNumber('B', 6)">6</td>
+            <td onclick="displayNumber('B', 7)">7</td>
+            <td onclick="displayNumber('B', 8)">8</td>
+            <td onclick="displayNumber('B', 9)">9</td>
+            <td onclick="displayNumber('B', 10)">10</td>
+            <td onclick="displayNumber('B', 11)">11</td>
+            <td onclick="displayNumber('B', 12)">12</td>
+            <td onclick="displayNumber('B', 13)">13</td>
+            <td onclick="displayNumber('B', 14)">14</td>
+            <td onclick="displayNumber('B', 15)">15</td>
+        </tr>
+        <tr>
+            <th>I</th>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <th>N</th>
+            <td>31</td>
+            <td>32</td>
+            <td>33</td>
+            <td>34</td>
+            <td>35</td>
+            <td>36</td>
+            <td>37</td>
+            <td>38</td>
+            <td>39</td>
+            <td>40</td>
+            <td>41</td>
+            <td>42</td>
+            <td>43</td>
+            <td>44</td>
+            <td>45</td>
+        </tr>
+        <tr>
+            <th>G</th>
+            <td>46</td>
+            <td>47</td>
+            <td>48</td>
+            <td>49</td>
+            <td>50</td>
+            <td>51</td>
+            <td>52</td>
+            <td>53</td>
+            <td>54</td>
+            <td>55</td>
+            <td>56</td>
+            <td>57</td>
+            <td>58</td>
+            <td>59</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <th>O</th>
+            <td>61</td>
+            <td>62</td>
+            <td>63</td>
+            <td>64</td>
+            <td>65</td>
+            <td>66</td>
+            <td>67</td>
+            <td>68</td>
+            <td>69</td>
+            <td>70</td>
+            <td>71</td>
+            <td>72</td>
+            <td>73</td>
+            <td>74</td>
+            <td>75</td>
+        </tr>
+    </table>
+
+    <script>
+        var generatedNumbers = []; // Array to store generated numbers
+        var selectedNumbers = new Set(); // Set to store selected numbers
+
+        function generateRandomNumber() {
+            var ranges = {
+                B: { min: 1, max: 15 },
+                I: { min: 16, max: 30 },
+                N: { min: 31, max: 45 },
+                G: { min: 46, max: 60 },
+                O: { min: 61, max: 75 }
+            };
+
+            var letters = Object.keys(ranges);
+            var randomLetter = letters[Math.floor(Math.random() * letters.length)];
+
+            var min = ranges[randomLetter].min;
+            var max = ranges[randomLetter].max;
+            var randomNumber;
+
+            do {
+                randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+            } while (selectedNumbers.has(randomNumber)); // Repeat until a unique number is generated
+
+            selectedNumbers.add(randomNumber); // Add the selected number to the set
+
+            // Add the generated number to the list
+            var generatedNumber = randomLetter + randomNumber;
+            generatedNumbers.unshift(generatedNumber); // Add to the top of the list
+
+            // Display only the latest generated number with bold red text
+            displayNumbers();
+
+            // Highlight the corresponding table cell
+            highlightInTable(randomLetter, randomNumber);
+        }
+
+        function displayNumbers() {
+            var numbersList = document.getElementById("numbersList");
+            numbersList.innerHTML = "";
+
+            // Display all generated numbers
+            for (var i = 0; i < generatedNumbers.length; i++) {
+                var listItem = document.createElement("li");
+                listItem.textContent = generatedNumbers[i];
+                listItem.classList.add("number-item", "red-bold");
+                numbersList.appendChild(listItem);
+            }
+
+            // Remove the previous generated numbers
+            var previousListItems = document.querySelectorAll(".number-item.red-bold:not(:first-child)");
+            for (var i = 0; i < previousListItems.length; i++) {
+                var previousListItem = previousListItems[i];
+                previousListItem.style.fontSize = "1px"; // Set the font size for the previous numbers
+                previousListItem.classList.remove("red-bold");
+            }
+        }
+
+        function highlightInTable(letter, number) {
+            
+
+            // Add the highlight to the new number
+            var cells = document.querySelectorAll('td, th');
+    for (var i = 0; i < cells.length; i++) {
+        var cell = cells[i];
+        if (cell.textContent.trim() === number.toString() && cell.parentElement.firstElementChild.textContent.trim() === letter) {
+            cell.classList.add('highlighted');
+            return;
+                }
+            }
+        }
+
+        function resetBoard() {
+            // Reset the generated numbers array
+            generatedNumbers = [];
+
+            //Clear the highlighted numbers
+            var highlightedCell = document.querySelector('.highlighted');
+            if (highlightedCell) {
+                highlightedCell.classList.remove('highlighted');
+            }
+
+            // Clear the displayed numbers
+            displayNumbers();
+
+            // Reset the uploaded image
+            document.getElementById("uploadedImage").src = "";
+            document.getElementById("imageInput").value = "";
+        }
+
+        function displayImage(event) {
+            var uploadedImage = document.getElementById("uploadedImage");
+            uploadedImage.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        function displayNumber(letter, number) {
+            var generatedNumber = letter + number;
+
+            // Toggle the highlight for the clicked number
+            if (selectedNumbers.has(generatedNumber)) {
+                selectedNumbers.delete(generatedNumber); // Remove from selected numbers
+            } else {
+                selectedNumbers.add(generatedNumber); // Add to selected numbers
+            }
+
+            // Update the display
+            displayNumbers();
+            highlightInTable(letter, number);
+        }
+    </script>
+</body>
+</html>
